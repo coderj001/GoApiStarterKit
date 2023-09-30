@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "gomod"
+    directory: "/"
+
+    # Auto assign PRs raised to this account on Github
+    assignees:
+      - "{{cookiecutter.github_username}}"
+
+
+    # Check for updates to dependencies once a week - Saturday
+    schedule:
+      interval: "weekly"
+      day: "saturday"
