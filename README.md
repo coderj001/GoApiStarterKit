@@ -8,8 +8,7 @@
   - LICENSE              # Licensing information for the project.
   - Makefile             # A Makefile for building and managing the project (optional).
   - cmd/                 # Directory for application-specific commands.
-    - go_project         # Subdirectory for the main application.
-      - main.go          # The entry point of the application.
+    - main.go            # The entry point of the application.
   - internal/            # Directory for internal packages and modules.
     - package_name/      # Subdirectory for internal packages (private to the project).
       - your_logic.go    # Go source files containing internal application logic.
@@ -22,8 +21,8 @@
 1. `/project_root`: The root directory of your Go project.
 2. `go.mod`: This is the Go module file. It defines the project's dependencies and is used for managing packages.
 3. `README.md`: A documentation file that provides information about your project.
-4. `LICENSE`: This file contains licensing information for your project, which is important for open-source projects.
-5. `Makefile`: (Optional) A Makefile for defining build and project management tasks.
+4. `LICENSE`: (Optional) This file contains licensing information for your project, which is important for open-source projects.
+5. `Makefile`: A Makefile for defining build and project management tasks.
 6. `cmd/`: A directory for application-specific commands.
 7. `go_project/`: Subdirectory for the main application.
 8. `main.go`: The main entry point of your Go application.
