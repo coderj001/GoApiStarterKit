@@ -11,6 +11,8 @@ function echo_info() {
 	echo "[GoApiStaterKit] INFO post_gen_project.sh - $1" >&1
 }
 
+cd {{ cookiecutter.project_name }}
+
 #
 # Step 1:
 #
