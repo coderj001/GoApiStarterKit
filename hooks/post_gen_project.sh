@@ -21,13 +21,6 @@ git add .
 git commit -n -m "Initial Commit"
 
 #
-# Step 2:
-#
-
-echo_info "Initializing Project"
-make init
-
-#
 # Done:
 #
 
