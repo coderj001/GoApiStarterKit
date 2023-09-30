@@ -1,0 +1,12 @@
+{
+  "author_name": "Raju Ghorai",
+  "github_username": "coderj001",
+  "docker_hub_username": "coderj001",
+  "project_name": "goapis",
+  "project_short_description": "A Golang Api's projects",
+  "use_docker": "y",
+  "use_git": "y",
+  "use_github_action": "y",
+  "docker_images_name": "goapis",
+  "license": "MIT"
+}
