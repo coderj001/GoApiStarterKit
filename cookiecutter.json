@@ -3,10 +3,11 @@
   "github_username": "coderj001",
   "docker_hub_username": "coderj001",
   "project_name": "goapis",
-  "project_short_description": "A Golang Api's projects",
+  "project_short_description": "A golang api's projects",
   "api_version": "v1",
   "use_github_action": "y",
   "use_rest_http": "y",
   "docker_images_name": "goapis",
-  "go_version": "1.20"
+  "go_version": "1.20",
+  "license": ["MIT", "BSD-3", "GNU GPL v3.0", "Apache Software License 2.0"]
 }

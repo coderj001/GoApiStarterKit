@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}dian/app"
-	"github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}dian/config"
+	"github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}/dian/app"
+	"github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}/dian/config"
 )
 
 func main() {

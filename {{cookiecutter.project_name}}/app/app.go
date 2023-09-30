@@ -5,13 +5,13 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gorilla/mux"
+	"github.com/jinzhu/gorm"
+	_ "github.com/lib/pq"
 	"github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}/app/handler"
 	"github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}/app/middleware"
 	"github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}/app/model"
 	"github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_name}}/config"
-	"github.com/gorilla/mux"
-	"github.com/jinzhu/gorm"
-	_ "github.com/lib/pq"
 )
 
 // App has router and db instances
@@ -43,21 +43,27 @@ func (a *App) Initialize(config *config.Config) {
 
 // setRouters sets the all required routers
 func (a *App) setRouters() {
-	a.Get("/health", a.handleRequest(handler.HealthCheck))
+	// Get the API version from cookiecutter.json
+	apiVersion := "{{ cookiecutter.api_version }}"
 
-	a.Post("/user/register", a.handleRequest(handler.RegisterUser))
-	a.Post("/user/login", a.handleRequest(handler.LoginUser))
+	// Create a base route group with the API version prefix
+	apiGroup := a.Group("/" + apiVersion)
 
+	// User-related routes
+	apiGroup.Post("/user/register", a.handleRequest(handler.RegisterUser))
+	apiGroup.Post("/user/login", a.handleRequest(handler.LoginUser))
+
+	// Middleware for authenticated routes
 	authMiddleware := middleware.AuthMiddleware(true)
 
-	a.Post("/contact", authMiddleware(a.handleRequest(handler.CreateContact)))
+	// Contact routes
+	apiGroup.Post("/contact", authMiddleware(a.handleRequest(handler.CreateContact)))
+	apiGroup.Post("/spam", a.handleRequest(handler.MarkNumberAsSpam))
+	apiGroup.Get("/search", authMiddleware(a.handleRequest(handler.SearchContact)))
+	apiGroup.Get("/user/{user_id}", a.handleRequest(handler.GetUserDetails))
 
-	a.Post("/spam", a.handleRequest(handler.MarkNumberAsSpam))
-	
-	a.Get("/search", authMiddleware(a.handleRequest(handler.SeachContact)))
-	
-	a.Get("/user/{user_id}", a.handleRequest(handler.GetUserDetailes))
-	
+	// Docker healthcheck API endpoint
+	a.Get("/health", a.handleRequest(handler.HealthCheck))
 }
 
 // Get wraps the router for GET method
