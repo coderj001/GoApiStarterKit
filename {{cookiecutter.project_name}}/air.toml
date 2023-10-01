@@ -4,7 +4,7 @@ tmp_dir = "tmp"
 log_dir = "log"
 
 [build]
-cmd = "go build -o /tmp/app ./cmd/main.go"
+cmd = "go build -o /tmp/app ./cmd/server/*.go"
 bin = "/tmp/app"
 delay = 1000
 

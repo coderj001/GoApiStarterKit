@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  db:
+    image: "postgres:alpine"
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "phoneguardian"
+    volumes:
+      - dev_postgres_data:/var/lib/postgresql/data:Z
+      - dev_postgres_data_backups:/backups:z
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app_dev:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.dev
+      image: {{cookiecutter.project_name}}_dev
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    
+volumes:
+   dev_postgres_data: {}
+   dev_postgres_data_backups: {}
+
