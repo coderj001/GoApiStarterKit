@@ -18,7 +18,7 @@ function echo_info() {
 # Step 1:
 #
 
-if [[ echo "{{cookiecutter.use_docker}}" | grep -iq "^n" ]]; then
+if [[ "{{cookiecutter.use_docker}}" =~ ^[Nn] ]]; then
 	rm -rf docker/ compose/
 fi
 
@@ -26,7 +26,7 @@ fi
 # Step 2:
 #
 
-if [[ echo "{{cookiecutter.use_rest_http}}" | grep -iq "^y" ]]; then
+if [[ "{{cookiecutter.use_rest_http}}" =~ ^[Yy] ]]; then
 	echo_info "Install rest.http extension for vscode"
 	touch rest.http
 fi
@@ -35,7 +35,7 @@ fi
 # Step 3:
 #
 
-if [[ echo "{{cookiecutter.use_github_action}}" | grep -iq "^n" ]]; then
+if [[ "{{cookiecutter.use_github_action}}" =~ ^[Nn] ]]; then
 	rm -rf .github/
 fi
 
