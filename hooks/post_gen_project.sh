@@ -44,7 +44,6 @@ fi
 #
 
 echo_info "Setup env"
-cp env.example
 cp env.example .env
 echo """
 
