@@ -3,8 +3,8 @@
 # Variables
 DOCKER_IMAGE_DEV = {{cookiecutter.project_name}}_dev
 DOCKER_IMAGE_PROD = {{cookiecutter.project_name}}_prod
-DOCKER_COMPOSE_DEV = docker-compose -f compose/dev.yml
-DOCKER_COMPOSE_PROD = docker-compose -f compose/prod.yml
+DOCKER_COMPOSE_DEV = docker-compose -f dev.yaml
+DOCKER_COMPOSE_PROD = docker-compose -f prod.yaml
 
 .PHONY: help build-dev build-prod run-dev run-prod build-cli run-cli clean
 
@@ -30,6 +30,12 @@ run-dev:
 run-prod:
 	$(DOCKER_COMPOSE_PROD) up
 
+down-dev:
+	$(DOCKER_COMPOSE_DEV) down
+	
+down-prod:
+	$(DOCKER_COMPOSE_PROD) down
+	
 build-cli:
 	go build -o {{cookiecutter.project_name}} cmd/server/*.go
 

@@ -28,7 +28,7 @@ fi
 
 if [[ "{{cookiecutter.use_rest_http}}" =~ ^[Yy] ]]; then
 	echo_info "Install rest.http extension for vscode"
-	touch rest.http
+	curl -sLO https://raw.githubusercontent.com/coderj001/PhoneGuardian/master/rest.http
 fi
 
 #
@@ -53,6 +53,13 @@ JWT_SECRET=$(openssl rand -base64 32)
 
 #
 # Step 5:
+#
+
+echo_info "Initializing Go"
+go mod tidy
+
+#
+# Step 6:
 #
 
 echo_info "Initializing Git"
